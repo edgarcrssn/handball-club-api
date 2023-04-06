@@ -1,6 +1,6 @@
 import express from 'express';
-// import clientsRouter from './routes/clientsRouter.js';
-// import hotelRouter from './routes/hotelRouter.js';
+import db from './Database.js';
+import authRouter from './routes/authRouter.js';
 
 const app = express();
 const port = 3001;
@@ -9,9 +9,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-// app.use('/clients', clientsRouter);
-// app.use('/hotel', hotelRouter);
+app.use('/auth', authRouter);
 
 app.listen(port, () => {
-  console.log(`The app is listening on port ${port}`);
+  console.log(`Le giga server de la mort qui tue est sur le port : ${port}`);
 });
