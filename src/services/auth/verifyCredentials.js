@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-export const checkLogin = (email, password) => {
+export const verifyCredentials = (email, password) => {
   return new Promise(async (resolve, reject) => {
     Database.db.get(
       'SELECT email, password, role FROM users WHERE email = $email',

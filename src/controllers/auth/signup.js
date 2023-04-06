@@ -1,12 +1,8 @@
 import { createUser } from '../../services/auth/createUser.js';
 
 export default async (req, res) => {
-  const { firstName, lastName, email, password, role } = req.body;
-  const areAllFieldsComplete =
-    firstName && lastName && email && password && role;
-  const isRoleOk = ['coach', 'contributor', 'player'].includes(role);
-
-  const isBodyCorrectFormat = areAllFieldsComplete && isRoleOk;
+  const { firstName, lastName, email, password } = req.body;
+  const isBodyCorrectFormat = firstName && lastName && email && password;
 
   if (isBodyCorrectFormat) {
     try {
@@ -18,6 +14,6 @@ export default async (req, res) => {
       else res.status(500).send(error);
     }
   } else {
-    res.status(400).send('Bad request');
+    res.status(400).send('Bad Quoicourequest');
   }
 };

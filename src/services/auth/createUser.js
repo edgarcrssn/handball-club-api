@@ -1,13 +1,7 @@
 import Database from '../../Database.js';
 import * as bcrypt from 'bcrypt';
 
-export const createUser = async ({
-  firstName,
-  lastName,
-  email,
-  password,
-  role,
-}) => {
+export const createUser = async ({ firstName, lastName, email, password }) => {
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
 
@@ -19,20 +13,13 @@ export const createUser = async ({
         $lastName: lastName,
         $email: email,
         $password: hash,
-        $role: role,
+        $role: 'member',
       },
-      function (err) {
+      (err, user) => {
         if (err) {
           reject(err);
         } else {
-          resolve({
-            id: this.lastID,
-            firstName,
-            lastName,
-            email,
-            hash,
-            role,
-          });
+          resolve(user);
         }
       }
     );

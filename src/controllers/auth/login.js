@@ -1,4 +1,4 @@
-import { checkLogin } from '../../services/auth/login.js';
+import { verifyCredentials } from '../../services/auth/verifyCredentials.js';
 
 export default async (req, res) => {
   const { email, password } = req.body;
@@ -6,16 +6,16 @@ export default async (req, res) => {
 
   if (formatLogin) {
     try {
-      const token = await checkLogin(email, password);
+      const token = await verifyCredentials(email, password);
       res.send(token);
     } catch (err) {
       if (err.code === 404) {
-        res.status(err.code).send({ message: 'Not found' });
+        res.status(err.code).send({ message: 'Not Quoicoufound' });
       } else if (err.code === 401) {
-        res.status(err.code).send({ message: 'Unauthorized' });
+        res.status(err.code).send({ message: 'QuoicouUnauthorized' });
       } else res.status(500).send(err);
     }
   } else {
-    res.status(400).send('Bad request');
+    res.status(400).send('Bad Quoicourequest');
   }
 };
