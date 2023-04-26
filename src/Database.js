@@ -17,7 +17,7 @@ class Database {
         );
         this.db.run(
           '\
-          CREATE TABLE IF NOT EXISTS matchs (\
+          CREATE TABLE IF NOT EXISTS matches (\
           id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\
           opponent TEXT NOT NULL,\
           opponentScore INTEGER,\
@@ -25,12 +25,12 @@ class Database {
           date TIMESTAMP DEFAULT CURRENT_TIMESTAMP)'
         );
         this.db.run(
-          'CREATE TABLE IF NOT EXISTS users_matchs (\
+          'CREATE TABLE IF NOT EXISTS users_matches (\
           userId INTEGER NOT NULL,\
           matchId INTEGER NOT NULL,\
           PRIMARY KEY (userId, matchId),\
           FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,\
-          FOREIGN KEY (matchId) REFERENCES matchs(id) ON DELETE CASCADE)'
+          FOREIGN KEY (matchId) REFERENCES matches(id) ON DELETE CASCADE)'
         );
         this.db.run(
           'CREATE TABLE IF NOT EXISTS articles (\

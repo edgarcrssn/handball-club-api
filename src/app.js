@@ -1,14 +1,15 @@
 import express from 'express';
-import db from './Database.js';
-import authRouter from './routes/authRouter.js';
-import adminRouter from './routes/adminRouter.js';
+import cors from 'cors';
+
+import membersRouter from './routes/members/membersRouter.js';
+import authRouter from './routes/auth/authRouter.js';
+import adminRouter from './routes/admin/adminRouter.js';
+import articlesRouter from './routes/articles/articlesRouter.js';
+import matchesRouter from './routes/matches/matchesRouter.js';
+
 import { adminMiddleware } from './middleware/adminMiddleware.js';
-import articlesRouter from './routes/articlesRouter.js';
-import matchsRouter from './routes/matchsRouter.js';
 import { apiKeyMiddleware } from './middleware/apiKeyMiddleware.js';
 import { corsOptions } from './middleware/corsMiddleware.js';
-import cors from 'cors';
-import membersRouter from './routes/membersRouter.js';
 
 const app = express();
 const port = 3001;
@@ -28,10 +29,11 @@ app.use((err, req, res, next) => {
   }
 });
 app.use(apiKeyMiddleware);
+
 app.use('/auth', authRouter);
 app.use('/admin', adminMiddleware, adminRouter);
 app.use('/articles', articlesRouter);
-app.use('/matchs', matchsRouter);
+app.use('/matches', matchesRouter);
 app.use('/members', membersRouter);
 
 app.listen(port, () => {

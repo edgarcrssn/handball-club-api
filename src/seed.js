@@ -11,13 +11,13 @@ Database.db.serialize(() => {
     `INSERT OR IGNORE INTO users VALUES(1, 'Edgar', 'Crasson', 'edgarcrasson@hotmail.com', '${hash}', 'admin', null)`
   );
 
-  // Insert some matchs
+  // Insert some matches
   Database.db.run(
-    `INSERT OR IGNORE INTO matchs VALUES(1, 'Apagnan', 3, 13, null)`
+    `INSERT OR IGNORE INTO matches VALUES(1, 'Apagnan', 3, 13, null)`
   );
 
-  // Insert some users_matchs
-  Database.db.run(`INSERT OR IGNORE INTO users_matchs VALUES(1, 1)`);
+  // Insert some users_matches
+  Database.db.run(`INSERT OR IGNORE INTO users_matches VALUES(1, 1)`);
 
   // Insert some articles
   Database.db.run(
