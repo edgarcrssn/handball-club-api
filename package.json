@@ -5,7 +5,8 @@
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
-    "start:dev": "node --watch src/app.js"
+    "start:dev": "node --watch src/app.js",
+    "db:init": "node src/seed.js"
   },
   "keywords": [
     "api"
@@ -14,10 +15,14 @@
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.0",
-    "sqlite3": "^5.1.6"
+    "sqlite3": "^5.1.6",
+    "swagger-ui-express": "^4.6.2",
+    "yamljs": "^0.3.0"
   },
   "type": "module"
 }

@@ -4,6 +4,7 @@ import authRouter from './routes/authRouter.js';
 import adminRouter from './routes/adminRouter.js';
 import { adminMiddleware } from './middleware/adminMiddleware.js';
 import articlesRouter from './routes/articlesRouter.js';
+import matchsRouter from './routes/matchsRouter.js';
 
 const app = express();
 const port = 3001;
@@ -15,6 +16,7 @@ app.use(express.static('public'));
 app.use('/auth', authRouter);
 app.use('/admin', adminMiddleware, adminRouter);
 app.use('/articles', articlesRouter);
+app.use('/matchs', matchsRouter);
 
 app.listen(port, () => {
   console.log(

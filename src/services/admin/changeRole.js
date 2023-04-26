@@ -5,7 +5,7 @@ export const changeRole = (email, role) => {
     Database.db.run(
       'UPDATE users SET role = ? WHERE email = ?',
       [role, email],
-      (err, user) => {
+      (err) => {
         if (err) {
           reject(err);
         } else {

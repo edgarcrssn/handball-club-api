@@ -7,7 +7,7 @@ dotenv.config();
 export const verifyCredentials = (email, password) => {
   return new Promise(async (resolve, reject) => {
     Database.db.get(
-      'SELECT email, password, role FROM users WHERE email = $email',
+      'SELECT id, email, password, role FROM users WHERE email = $email',
       {
         $email: email,
       },
@@ -28,6 +28,7 @@ export const verifyCredentials = (email, password) => {
               const secret = process.env.SECRET;
               const expiresIn = '1h';
               const payload = {
+                id: user.id,
                 email: user.email,
                 role: user.role,
               };

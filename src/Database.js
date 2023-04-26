@@ -1,7 +1,4 @@
 import sqlite3 from 'sqlite3';
-import * as bcrypt from 'bcrypt';
-import * as dotenv from 'dotenv';
-dotenv.config();
 
 class Database {
   constructor() {
@@ -43,17 +40,6 @@ class Database {
           createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\
           userId INTEGER NOT NULL,\
           FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE)'
-        );
-        const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(process.env.ADMIN_PASS, salt);
-        this.db.run(
-          `INSERT OR IGNORE INTO users VALUES(null, 'Edgar', 'Crasson', 'edgarcrasson@hotmail.com', '${hash}', 'admin', null)`
-        );
-        this.db.run(
-          `INSERT OR IGNORE INTO articles VALUES(null, 'Comment quoicoubeh a changer le monde ?', 'quoicoubeh quoicoubeh quoicoubeh quoicoubeh quoicoubeh', null, 1)`
-        );
-        this.db.run(
-          `INSERT OR IGNORE INTO articles VALUES(null, 'Comment quoicourageu veulent censurer les quoicoubeh ?', 'quoicoubliat quoicoubliat quoicoubliat quoicoubliat quoicoubliat', null, 1)`
         );
         Database.instance = this;
       });

@@ -6,6 +6,10 @@ export default async (req, res) => {
   if (!req.params.email || !isRoleOk)
     return res.status(400).send({ message: 'QuoicouBadRequest' });
 
-  await changeRole(req.params.email, req.body.role);
-  res.send();
+  try {
+    await changeRole(req.params.email, req.body.role);
+    res.send();
+  } catch (err) {
+    res.status(500).send(err);
+  }
 };
