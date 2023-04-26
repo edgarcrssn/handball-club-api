@@ -1,7 +1,7 @@
 import express from 'express';
 
-import signupController from './controllers/signup.js';
-import loginController from './controllers/login.js';
+import signupController from './controllers/signupController.js';
+import loginController from './controllers/loginController.js';
 
 import { classValidatorMiddleware } from '../../middleware/classValidatorMiddleware.js';
 
