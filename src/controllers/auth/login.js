@@ -4,6 +4,7 @@ export default async (req, res) => {
   const { email, password } = req.body;
   const formatLogin = email && password;
 
+  // TODO express-validator
   if (formatLogin) {
     try {
       const token = await verifyCredentials(email, password);

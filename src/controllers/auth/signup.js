@@ -4,6 +4,7 @@ export default async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
   const isBodyCorrectFormat = firstName && lastName && email && password;
 
+  // TODO express-validator
   if (isBodyCorrectFormat) {
     try {
       const user = await createUser(req.body);
