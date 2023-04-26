@@ -43,6 +43,7 @@ export const getUserByIdWithMatches = (userId) => {
               password: row.password,
               role: row.role,
               createdAt: row.createdAt,
+              matches: [],
             };
           }
         }

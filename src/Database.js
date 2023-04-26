@@ -12,7 +12,7 @@ class Database {
           lastName TEXT NOT NULL,\
           email TEXT UNIQUE NOT NULL,\
           password TEXT NOT NULL,\
-          role TEXT NOT NULL,\
+          role TEXT DEFAULT "member",\
           createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP)'
         );
         this.db.run(

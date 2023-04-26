@@ -1,9 +1,9 @@
 import Database from '../../../Database.js';
 
-export const getArticles = () => {
+export const getArticlesWithAuthor = () => {
   return new Promise((resolve, reject) => {
     Database.db.all(
-      'SELECT id, title, content, createdAt FROM articles',
+      'SELECT a.id, a.title, a.content, a.createdAt, u.firstName, u.lastName, u.email FROM articles a INNER JOIN users u ON u.id = a.userId',
       (err, rows) => {
         if (err) {
           reject(err);
@@ -13,6 +13,11 @@ export const getArticles = () => {
             title: row.title,
             content: row.content,
             createdAt: row.createdAt,
+            author: {
+              firstName: row.firstName,
+              lastName: row.lastName,
+              email: row.email,
+            },
           }));
           resolve(articles);
         }

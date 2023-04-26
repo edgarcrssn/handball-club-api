@@ -8,12 +8,12 @@ Database.db.serialize(() => {
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(process.env.ADMIN_PASS, salt);
   Database.db.run(
-    `INSERT OR IGNORE INTO users VALUES(1, 'Edgar', 'Crasson', 'edgarcrasson@hotmail.com', '${hash}', 'admin', null)`
+    `INSERT OR IGNORE INTO users(firstName, lastName, email, password, role) VALUES('Edgar', 'Crasson', 'edgarcrasson@hotmail.com', '${hash}', 'admin')`
   );
 
   // Insert some matches
   Database.db.run(
-    `INSERT OR IGNORE INTO matches VALUES(1, 'Apagnan', 3, 13, null)`
+    `INSERT OR IGNORE INTO matches(opponent, opponentScore, teamScore) VALUES('Apagnan', 3, 13)`
   );
 
   // Insert some users_matches
@@ -21,10 +21,10 @@ Database.db.serialize(() => {
 
   // Insert some articles
   Database.db.run(
-    `INSERT OR IGNORE INTO articles VALUES(1, 'Comment quoicoubeh a changé le monde ?', 'quoicoubeh quoicoubeh quoicoubeh quoicoubeh quoicoubeh', null, 1)`
+    `INSERT OR IGNORE INTO articles(title, content, userId) VALUES('Comment quoicoubeh a changé le monde ?', 'quoicoubeh quoicoubeh quoicoubeh quoicoubeh quoicoubeh', 1)`
   );
   Database.db.run(
-    `INSERT OR IGNORE INTO articles VALUES(2, 'Comment les quoicourageux veulent censurer les quoicoubeh ?', 'quoicoubliat quoicoubliat quoicoubliat quoicoubliat quoicoubliat', null, 1)`
+    `INSERT OR IGNORE INTO articles(title, content, userId) VALUES('Comment les quoicourageux veulent censurer les quoicoubeh ?', 'quoicoubliat quoicoubliat quoicoubliat quoicoubliat quoicoubliat', 1)`
   );
 
   console.log(

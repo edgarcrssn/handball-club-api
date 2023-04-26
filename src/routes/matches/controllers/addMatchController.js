@@ -5,16 +5,14 @@ export default async (req, res) => {
 
   try {
     const existingMatch = await getMatchByDate(date);
-    if (existingMatch) {
+    if (existingMatch)
       return res
         .status(400)
         .send({ message: 'A match already exists on this date' });
-    }
 
-    const newMatch = await addMatch(opponent, opponentScore, teamScore, date);
-    res.status(200).send(newMatch);
-  } catch (err) {
-    console.log(err);
-    res.status(500).send(err);
+    await addMatch(opponent, opponentScore, teamScore, date);
+    res.sendStatus(200);
+  } catch (error) {
+    res.status(500).send(error);
   }
 };

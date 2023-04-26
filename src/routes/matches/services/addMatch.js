@@ -13,19 +13,9 @@ export const addMatch = (opponent, opponentScore, teamScore, date) => {
     Database.db.run(
       'INSERT INTO matches (opponent, opponentScore, teamScore, date) VALUES (?, ?, ?, ?)',
       matchData,
-      function (err) {
-        if (err) {
-          reject(err);
-        } else {
-          const match = {
-            id: this.lastID,
-            opponent: opponent,
-            opponentScore: opponentScore !== 'NULL' ? opponentScore : null,
-            teamScore: teamScore !== 'NULL' ? teamScore : null,
-            date: date,
-          };
-          resolve(match);
-        }
+      function (error) {
+        if (error) reject(error);
+        else resolve();
       }
     );
   });
@@ -42,11 +32,8 @@ export const getMatchByDate = (date) => {
       if (err) {
         reject(err);
       } else {
-        if (result.length > 0) {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
+        if (result.length > 0) resolve(true);
+        resolve(false);
       }
     });
   });

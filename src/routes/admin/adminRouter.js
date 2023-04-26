@@ -1,14 +1,18 @@
 import express from 'express';
-import joinRequestsController from './controllers/joinRequestsController.js';
+
+import getJoinRequestsController from './controllers/getJoinRequestsController.js';
 import changeRoleController from './controllers/changeRoleController.js';
+import { classValidatorMiddleware } from '../../middleware/classValidatorMiddleware.js';
+
 import { changeRoleValidator } from './adminValidators.js';
 
 const adminRouter = express.Router();
 
-adminRouter.get('/join-requests', joinRequestsController);
+adminRouter.get('/join-requests', getJoinRequestsController);
 adminRouter.patch(
-  '/change-role/:email',
+  '/change-role/:userId',
   changeRoleValidator,
+  classValidatorMiddleware,
   changeRoleController
 );
 

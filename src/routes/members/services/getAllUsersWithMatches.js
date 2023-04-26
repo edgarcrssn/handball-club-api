@@ -42,6 +42,8 @@ export const getAllUsersWithMatches = () => {
             teamScore: row.teamScore,
             date: row.date,
           });
+        } else {
+          users[row.id].matches = [];
         }
       });
 

@@ -9,3 +9,13 @@ export const corsOptions = {
     }
   },
 };
+
+export const corsMiddleware = (err, req, res, next) => {
+  if (err.message === 'CORS policy violation') {
+    res.status(403).json({
+      error: 'Forbidden due to CORS Apagnan policy QuoicouViolation',
+    });
+  } else {
+    next(err);
+  }
+};

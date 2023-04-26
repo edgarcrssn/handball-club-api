@@ -7,10 +7,8 @@ dotenv.config();
 export const verifyCredentials = (email, password) => {
   return new Promise(async (resolve, reject) => {
     Database.db.get(
-      'SELECT id, email, password, role FROM users WHERE email = $email',
-      {
-        $email: email,
-      },
+      'SELECT id, email, password, role FROM users WHERE email = ?',
+      [email],
       async (err, user) => {
         if (err) {
           reject(err);
@@ -26,14 +24,13 @@ export const verifyCredentials = (email, password) => {
               reject({ code: 401 });
             } else {
               const secret = process.env.SECRET;
-              const expiresIn = '1h';
               const payload = {
                 id: user.id,
                 email: user.email,
                 role: user.role,
               };
-              const token = jwt.sign(payload, secret, { expiresIn });
-              resolve({ token });
+              const token = jwt.sign(payload, secret, { expiresIn: '1h' });
+              resolve(token);
             }
           }
         }

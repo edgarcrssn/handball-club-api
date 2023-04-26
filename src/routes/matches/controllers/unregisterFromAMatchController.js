@@ -1,16 +1,15 @@
 import { unregisterFromAMatch } from '../services/unregisterFromAMatch.js';
 
 export default async (req, res) => {
-  if (!req.params.matchId) return res.send(400).send({ message: 'BadRequest' });
-
+  if (!req.params.matchId) return res.sendStatus(400);
   try {
     await unregisterFromAMatch(req.params.matchId, req.user.id);
-    res.send();
-  } catch (err) {
-    if (err.errno === 19)
+    res.sendStatus(200);
+  } catch (error) {
+    if (error.errno === 19)
       return res
         .status(309)
         .send({ message: 'you are not registered for this match' });
-    res.status(err.code || 500).send(err.message || err);
+    res.status(error.code || 500).send(error.message || error);
   }
 };

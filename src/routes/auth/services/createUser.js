@@ -7,20 +7,11 @@ export const createUser = async ({ firstName, lastName, email, password }) => {
 
   return new Promise((resolve, reject) => {
     Database.db.run(
-      'INSERT INTO users VALUES (null, $firstName, $lastName, $email, $password, $role, null)',
-      {
-        $firstName: firstName,
-        $lastName: lastName,
-        $email: email,
-        $password: hash,
-        $role: 'member',
-      },
-      (err, user) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(user);
-        }
+      'INSERT INTO users(firstName, lastName, email, password) VALUES (?, ?, ?, ?)',
+      [firstName, lastName, email, hash],
+      (err) => {
+        if (err) reject(err);
+        else resolve();
       }
     );
   });
