@@ -23,7 +23,9 @@ npm install
 ```
 - Setup your environment variables (.env). See [.env.example](.env.example).
 
-You can now run the API :
+---
+
+You can now bootstrap the API :
 ```zsh
 npm run start:dev
 ```
