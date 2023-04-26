@@ -1,6 +1,6 @@
 import Database from '../../Database.js';
 
-export const registerForAMatch = (matchId, userId) => {
+export const unregisterFromAMatch = (matchId, userId) => {
   return new Promise(async (resolve, reject) => {
     const userQuery = Database.db.get('SELECT id FROM users WHERE id = ?', [
       userId,
@@ -17,7 +17,7 @@ export const registerForAMatch = (matchId, userId) => {
     }
 
     Database.db.run(
-      'INSERT INTO users_matchs VALUES(?, ?)',
+      'DELETE FROM users_matchs WHERE userId = ? AND matchId = ?',
       [userId, matchId],
       function (err, row) {
         if (err) reject(err);

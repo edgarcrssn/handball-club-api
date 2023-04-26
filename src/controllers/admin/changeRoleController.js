@@ -1,15 +1,20 @@
+import { validationResult } from 'express-validator';
 import { changeRole } from '../../services/admin/changeRole.js';
 
 export default async (req, res) => {
-  // TODO express-validator
-  const isRoleOk = ['coach', 'contributor', 'player'].includes(req.body.role);
-  if (!req.params.email || !isRoleOk)
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  if (!req.params.email || !req.body.role) {
     return res.status(400).send({ message: 'QuoicouBadRequest' });
+  }
 
   try {
     await changeRole(req.params.email, req.body.role);
-    res.send();
+    res.status(200).send({ message: 'Role modifié avec succès' });
   } catch (err) {
-    res.status(500).send(err);
+    res.status(err.code || 500).send(err.message || err);
   }
 };

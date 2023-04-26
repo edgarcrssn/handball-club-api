@@ -8,6 +8,7 @@ import matchsRouter from './routes/matchsRouter.js';
 import { apiKeyMiddleware } from './middleware/apiKeyMiddleware.js';
 import { corsOptions } from './middleware/corsMiddleware.js';
 import cors from 'cors';
+import membersRouter from './routes/membersRouter.js';
 
 const app = express();
 const port = 3001;
@@ -31,6 +32,7 @@ app.use('/auth', authRouter);
 app.use('/admin', adminMiddleware, adminRouter);
 app.use('/articles', articlesRouter);
 app.use('/matchs', matchsRouter);
+app.use('/members', membersRouter);
 
 app.listen(port, () => {
   console.log(
