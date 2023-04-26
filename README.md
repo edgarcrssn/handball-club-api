@@ -1,6 +1,6 @@
 # Handball Club API
 
-An API that we developed in the context of a school project.
+An API that we developed in the context of a school project. [See the brief](brief-hcc.pdf)
 
 It is built with **Node.js**, **express** and **sqlite**. It uses *jwt*, *bcrypt*, *cors*, *express-validator* and *swagger*.
 
