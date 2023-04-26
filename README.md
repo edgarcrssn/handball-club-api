@@ -28,7 +28,7 @@ You can now run the API :
 npm run start:dev
 ```
 
-You can apply run the seed to hydrate the database with some data :
+You can run the seed to hydrate the database with some data :
 ```zsh
 npm run db:init
 ```
