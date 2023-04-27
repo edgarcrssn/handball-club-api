@@ -6,9 +6,9 @@ export default async (req, res) => {
     await unregisterFromAMatch(req.params.matchId, req.user.id);
     res.sendStatus(200);
   } catch (error) {
-    if (error.errno === 19)
+    if (error.code === 404)
       return res
-        .status(309)
+        .status(404)
         .send({ message: 'you are not registered for this match' });
     res.status(error.code || 500).send(error.message || error);
   }

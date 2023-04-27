@@ -2,7 +2,6 @@ import { registerForAMatch } from '../services/registerForAMatch.js';
 
 export default async (req, res) => {
   if (!req.params.matchId) return res.sendStatus(400);
-
   try {
     await registerForAMatch(req.params.matchId, req.user.id);
     res.sendStatus(201);

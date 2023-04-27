@@ -9,8 +9,8 @@ export const getAllUsersWithMatches = () => {
       LEFT JOIN matches m ON um.matchId = m.id
       ORDER BY u.id
     `;
-    Database.db.all(sql, [], function (err, result) {
-      if (err) reject(err);
+    Database.db.all(sql, [], function (error, result) {
+      if (error) reject(error);
 
       const users = {};
       result.forEach((row) => {
@@ -32,9 +32,7 @@ export const getAllUsersWithMatches = () => {
           row.teamScore !== null &&
           row.date !== null
         ) {
-          if (!users[row.id].matches) {
-            users[row.id].matches = [];
-          }
+          if (!users[row.id].matches) users[row.id].matches = [];
           users[row.id].matches.push({
             id: row.matchId,
             opponent: row.opponent,
@@ -42,9 +40,7 @@ export const getAllUsersWithMatches = () => {
             teamScore: row.teamScore,
             date: row.date,
           });
-        } else {
-          users[row.id].matches = [];
-        }
+        } else users[row.id].matches = [];
       });
 
       resolve(Object.values(users));

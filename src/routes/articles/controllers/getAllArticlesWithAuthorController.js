@@ -1,10 +1,10 @@
-import { getArticlesWithAuthor } from '../services/getArticlesWithAuthor.js';
+import { getAllArticlesWithAuthor } from '../services/getAllArticlesWithAuthor.js';
 
 export default async (req, res) => {
   try {
-    const articles = await getArticlesWithAuthor();
+    const articles = await getAllArticlesWithAuthor();
     res.send({ articles });
-  } catch (err) {
-    res.status(500).send(err);
+  } catch (error) {
+    res.status(500).send(error);
   }
 };

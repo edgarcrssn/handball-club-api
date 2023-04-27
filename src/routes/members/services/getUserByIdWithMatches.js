@@ -9,8 +9,8 @@ export const getUserByIdWithMatches = (userId) => {
       LEFT JOIN matches m ON um.matchId = m.id
       WHERE u.id = ?
     `;
-    Database.db.all(sql, [userId], function (err, result) {
-      if (err) reject(err);
+    Database.db.all(sql, [userId], function (error, result) {
+      if (error) reject(error);
 
       const users = {};
       result.forEach((row) => {
@@ -33,21 +33,20 @@ export const getUserByIdWithMatches = (userId) => {
             teamScore: row.teamScore,
             date: row.date,
           });
-        } else {
-          if (!users[row.id]) {
-            users[row.id] = {
-              id: row.id,
-              firstName: row.firstName,
-              lastName: row.lastName,
-              email: row.email,
-              password: row.password,
-              role: row.role,
-              createdAt: row.createdAt,
-              matches: [],
-            };
-          }
+        } else if (!users[row.id]) {
+          users[row.id] = {
+            id: row.id,
+            firstName: row.firstName,
+            lastName: row.lastName,
+            email: row.email,
+            password: row.password,
+            role: row.role,
+            createdAt: row.createdAt,
+            matches: [],
+          };
         }
       });
+
       resolve(Object.values(users));
     });
   });

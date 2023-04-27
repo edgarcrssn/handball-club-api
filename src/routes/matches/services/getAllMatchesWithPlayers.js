@@ -9,8 +9,8 @@ export const getAllMatchesWithPlayers = () => {
       LEFT JOIN users u ON u.id = um.userId
       ORDER BY m.id, um.userId
     `;
-    Database.db.all(sql, [], function (err, result) {
-      if (err) reject(err);
+    Database.db.all(sql, [], function (error, result) {
+      if (error) reject(error);
 
       const matches = {};
       result.forEach((row) => {

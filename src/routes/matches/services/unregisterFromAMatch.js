@@ -22,7 +22,8 @@ export const unregisterFromAMatch = (matchId, userId) => {
               [userId, matchId],
               function (error) {
                 if (error) reject(error);
-                resolve();
+                if (this.changes === 1) resolve();
+                else reject({ code: 404 });
               }
             );
           }

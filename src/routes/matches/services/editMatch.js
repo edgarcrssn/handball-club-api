@@ -7,9 +7,8 @@ export const editMatch = (matchId, { opponentScore, teamScore }) => {
       [opponentScore, teamScore, matchId],
       function (error) {
         if (error) reject(error);
-        else if (this.changes === 0) {
-          reject({ code: 404 });
-        } else resolve();
+        else if (this.changes === 1) resolve();
+        else reject({ code: 404 });
       }
     );
   });

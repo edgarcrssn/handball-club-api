@@ -9,8 +9,9 @@ export const getMatchByIdWithPlayers = (matchId) => {
       LEFT JOIN users u ON u.id = um.userId
       WHERE m.id = ?
     `;
-    Database.db.all(sql, [matchId], function (err, result) {
-      if (err) return reject(err);
+    Database.db.all(sql, [matchId], function (error, result) {
+      if (error) return reject(error);
+
       if (!result[0] || !result[0].id) return reject({ code: 404 });
 
       const match = {

@@ -5,14 +5,10 @@ export const changeRole = (userId, role) => {
     Database.db.run(
       'UPDATE users SET role = ? WHERE id = ?',
       [role, userId],
-      function (err) {
-        if (err) {
-          reject(err);
-        } else if (this.changes === 1) {
-          resolve();
-        } else {
-          reject({ code: 404, message: 'QuoicouNot Found' });
-        }
+      function (error) {
+        if (error) reject(error);
+        else if (this.changes === 1) resolve();
+        else reject({ code: 404 });
       }
     );
   });

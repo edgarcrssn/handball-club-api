@@ -1,6 +1,6 @@
 import Database from '../../../Database.js';
 
-export const addMatch = (opponent, opponentScore, teamScore, date) => {
+export const addMatch = ({ opponent, opponentScore, teamScore, date }) => {
   return new Promise((resolve, reject) => {
     const matchData = [opponent, opponentScore, teamScore, date];
 
@@ -23,18 +23,16 @@ export const addMatch = (opponent, opponentScore, teamScore, date) => {
 
 export const getMatchByDate = (date) => {
   return new Promise(async (resolve, reject) => {
-    const sql = `
-      SELECT id
-      FROM matches m
-      WHERE DATE(m.date) = DATE(?)
-    `;
-    Database.db.all(sql, [date], function (err, result) {
-      if (err) {
-        reject(err);
-      } else {
-        if (result.length > 0) resolve(true);
-        resolve(false);
+    Database.db.all(
+      `SELECT id
+      FROM matches
+      WHERE DATE(date) = DATE(?)`,
+      [date],
+      function (error, result) {
+        if (error) reject(error);
+        else if (result.length) resolve(true);
+        else resolve(false);
       }
-    });
+    );
   });
 };

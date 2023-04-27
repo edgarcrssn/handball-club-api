@@ -9,8 +9,8 @@ export const createUser = async ({ firstName, lastName, email, password }) => {
     Database.db.run(
       'INSERT INTO users(firstName, lastName, email, password) VALUES (?, ?, ?, ?)',
       [firstName, lastName, email, hash],
-      (err) => {
-        if (err) reject(err);
+      (error) => {
+        if (error) reject(error);
         else resolve();
       }
     );

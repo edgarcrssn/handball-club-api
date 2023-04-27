@@ -1,11 +1,11 @@
 import express from 'express';
 
+import getAllMatchesWithPlayersController from './controllers/getAllMatchesWithPlayersController.js';
+import getMatchByIdWithPlayersController from './controllers/getMatchByIdWithPlayersController.js';
 import registerForAMatchController from './controllers/registerForAMatchController.js';
 import unregisterFromAMatchController from './controllers/unregisterFromAMatchController.js';
 import addMatchController from './controllers/addMatchController.js';
 import editMatchController from './controllers/editMatchController.js';
-import getAllMatchesWithPlayersController from './controllers/getAllMatchesWithPlayersController.js';
-import getMatchByIdWithPlayersController from './controllers/getMatchByIdWithPlayersController.js';
 
 import { playerMiddleware } from '../../middleware/playerMiddleware.js';
 import { coachMiddleware } from '../../middleware/coachMiddleware.js';

@@ -1,15 +1,12 @@
 import { getUserByIdWithMatches } from '../services/getUserByIdWithMatches.js';
 
 export default async (req, res) => {
-  const userId = req.params.id;
-  if (!userId) return res.send(400).send({ message: 'QuoicouBad Request' });
-
+  if (!req.params.id) return res.sendStatus(400);
   try {
-    const user = await getUserByIdWithMatches(userId);
-    if (!user[0]) return res.status(404).send({ message: 'QuoicouNot Found' });
-    res.status(200).send({ user: user[0] });
-  } catch (err) {
-    console.log(err);
-    res.status(500).send(err);
+    const users = await getUserByIdWithMatches(req.params.id);
+    if (!users[0]) return res.sendStatus(404);
+    res.send({ user: users[0] });
+  } catch (error) {
+    res.status(500).send(error);
   }
 };
