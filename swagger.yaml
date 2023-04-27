@@ -1,0 +1,86 @@
+openapi: 3.0.3
+info:
+  title: Handball Club API
+  description: |-
+    An API that we developed in the context of a school project. [View on GitHub](https://github.com/edgarcrssn/handball-club-api)
+tags:
+  - name: auth
+    description: Authentication
+  - name: admin
+    description: Administration
+  - name: members
+  - name: matches
+  - name: articles
+paths:
+  /auth/signup:
+    post:
+      tags:
+        - auth
+      summary: Create an account
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: Log into your account
+
+  /admin/join-requests:
+    get:
+      tags:
+        - admin
+      summary: As an admin, find members' join requests
+  /admin/change-role/{userId}:
+    patch:
+      tags:
+        - admin
+      summary: As an admin, update a member's role
+
+  /members:
+    get:
+      tags:
+        - members
+      summary: Find all members
+  /members/{id}:
+    get:
+      tags:
+        - members
+      summary: Find member by id
+
+  /matches:
+    get:
+      tags:
+        - matches
+      summary: Find all matches with players
+    post:
+      tags:
+        - matches
+      summary: As a coach, create a new match
+  /matches/{matchId}:
+    get:
+      tags:
+        - matches
+      summary: Find match by id with players
+  /matches/{matchId}/register:
+    post:
+      tags:
+        - matches
+      summary: As a player, register for a match
+  /matches/{matchId}/unregister:
+    post:
+      tags:
+        - matches
+      summary: As a player, unregister from a match
+
+  /articles:
+    get:
+      tags:
+        - articles
+      summary: Find all articles with author
+    post:
+      tags:
+        - articles
+      summary: As a contributor, create a new article
+  /articles/{id}:
+    get:
+      tags:
+        - articles
+      summary: Find article by id with author

@@ -1,5 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
 
 import authRouter from './routes/auth/authRouter.js';
 import adminRouter from './routes/admin/adminRouter.js';
@@ -17,6 +19,9 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+
+const swaggerDocument = YAML.load('./swagger.yaml');
+app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(cors(corsOptions));
 app.use(corsMiddleware);

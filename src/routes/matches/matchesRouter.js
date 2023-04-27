@@ -19,12 +19,12 @@ matchesRouter.get('/', getAllMatchesWithPlayersController);
 matchesRouter.get('/:matchId', getMatchByIdWithPlayersController);
 
 matchesRouter.post(
-  '/register/:matchId',
+  '/:matchId/register',
   playerMiddleware,
   registerForAMatchController
 );
 matchesRouter.post(
-  '/unregister/:matchId',
+  '/:matchId/unregister',
   playerMiddleware,
   unregisterFromAMatchController
 );
