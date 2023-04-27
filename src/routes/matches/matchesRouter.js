@@ -11,7 +11,7 @@ import { playerMiddleware } from '../../middleware/playerMiddleware.js';
 import { coachMiddleware } from '../../middleware/coachMiddleware.js';
 import { classValidatorMiddleware } from '../../middleware/classValidatorMiddleware.js';
 
-import { addMatchValidator } from './matchesValidators.js';
+import { addMatchValidator, editMatchValidator } from './matchesValidators.js';
 
 const matchesRouter = express.Router();
 
@@ -36,6 +36,12 @@ matchesRouter.post(
   classValidatorMiddleware,
   addMatchController
 );
-matchesRouter.patch('/:matchId', coachMiddleware, editMatchController); // TODO
+matchesRouter.patch(
+  '/:matchId',
+  coachMiddleware,
+  editMatchValidator,
+  classValidatorMiddleware,
+  editMatchController
+);
 
 export default matchesRouter;

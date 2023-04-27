@@ -2,10 +2,9 @@ import { getAllMatchesWithPlayers } from '../services/getAllMatchesWithPlayers.j
 
 export default async (req, res) => {
   try {
-    const allMatches = await getAllMatchesWithPlayers();
-    res.status(200).send(allMatches);
+    const matches = await getAllMatchesWithPlayers();
+    res.status(200).send({ matches });
   } catch (err) {
-    console.log(err);
     res.status(500).send(err);
   }
 };

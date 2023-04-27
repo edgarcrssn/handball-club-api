@@ -11,7 +11,7 @@ export const addMatch = (opponent, opponentScore, teamScore, date) => {
     }
 
     Database.db.run(
-      'INSERT INTO matches (opponent, opponentScore, teamScore, date) VALUES (?, ?, ?, ?)',
+      'INSERT INTO matches (opponent, opponentScore, teamScore, date) VALUES (?, ?, ?, DATE(?))',
       matchData,
       function (error) {
         if (error) reject(error);

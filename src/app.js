@@ -29,7 +29,5 @@ app.use('/matches', matchesRouter);
 app.use('/articles', articlesRouter);
 
 app.listen(port, () => {
-  console.log(
-    `Le quoicouserver est sur le quoicouport : ${port}. QUOICOUBEH QUOICOUBEH !!! 😘🥶`
-  );
+  console.log(`Le quoicouserver est sur le quoicouport ${port}`);
 });

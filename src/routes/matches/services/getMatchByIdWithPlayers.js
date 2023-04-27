@@ -10,7 +10,8 @@ export const getMatchByIdWithPlayers = (matchId) => {
       WHERE m.id = ?
     `;
     Database.db.all(sql, [matchId], function (err, result) {
-      if (err) reject(err);
+      if (err) return reject(err);
+      if (!result[0] || !result[0].id) return reject({ code: 404 });
 
       const match = {
         id: result[0].id,
