@@ -59,6 +59,10 @@ paths:
       tags:
         - matches
       summary: Find match by id with players
+    patch:
+      tags:
+        - matches
+      summary: As a coach, update a match's score
   /matches/{matchId}/register:
     post:
       tags:
